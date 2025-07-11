@@ -1,0 +1,54 @@
+<div class="station-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6
+                hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+      {{ station.stationName }}
+    </h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+      {{ getDirectionLabel(station.direction) }} Platform
+    </p>
+    <div class="flex flex-wrap gap-1">
+      @for (line of uniqueNormalizedLines; track line) {
+        <app-train-badge-component [line]="line" [size]="'small'" />
+      }
+    </div>
+  </div>
+
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    @if (sortedTrains.length > 0) {
+    @for (train of sortedTrains; track train.tripId) {
+    <div class="flex items-center justify-between py-2">
+      <div class="flex items-center gap-3">
+        <app-train-badge-component [line]="train.routeId" />
+        <div class="flex flex-col">
+          <span class="text-sm text-gray-600 dark:text-gray-400">
+            {{ getDirectionLabel(train.direction) }}
+          </span>
+          @if (train.actualTrack || train.scheduledTrack) {
+          <span class="text-xs text-gray-500 dark:text-gray-500">
+            Track {{ train.actualTrack || train.scheduledTrack }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-sm font-semibold" [class.text-red-600]="train.minutesAway! <= 2"
+          [class.text-gray-900]="train.minutesAway! > 2" [class.dark:text-red-400]="train.minutesAway! <= 2"
+          [class.dark:text-white]="train.minutesAway! > 2">
+          {{ train.minutesAway }} min
+        </span>
+        @if (train.trainId) {
+        <div class="text-xs text-gray-500 dark:text-gray-500">
+          {{ train.trainId }}
+        </div>
+        }
+      </div>
+    </div>
+    }
+    } @else {
+    <p class="text-gray-500 dark:text-gray-400 text-sm py-2">
+      No trains scheduled
+    </p>
+    }
+  </div>
+</div>

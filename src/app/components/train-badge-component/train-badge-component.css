@@ -1,0 +1,83 @@
+:host {
+  display: inline-block;
+}
+
+.train-badge {
+  transition: transform 0.2s;
+}
+
+.train-badge:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* MTA Train Line Colors */
+.line-4,
+.line-5,
+.line-6 {
+  background-color: #00933C;
+}
+
+.line-L {
+  background-color: #A7A9AC;
+}
+
+.line-S {
+  background-color: #808183;
+}
+
+.line-1,
+.line-2,
+.line-3 {
+  background-color: #EE352E;
+}
+
+.line-A,
+.line-C,
+.line-E {
+  background-color: #0039A6;
+}
+
+.line-B,
+.line-D,
+.line-F,
+.line-M {
+  background-color: #FF6319;
+}
+
+.line-G {
+  background-color: #6CBE45;
+}
+
+.line-J,
+.line-Z {
+  background-color: #996633;
+}
+
+.line-N,
+.line-Q,
+.line-R,
+.line-W {
+  background-color: #FCCC0A;
+  color: #000 !important;
+}
+
+.line-7,
+.line-7X {
+  background-color: #B933AD;
+}
